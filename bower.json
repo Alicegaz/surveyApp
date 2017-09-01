@@ -5,7 +5,8 @@
   "main": "index.html",
   "license": "MIT",
   "dependencies": {
-    "angular": "~1.4.4"
+    "angular": "~1.4.4",
+    "angular-ui-select": "^0.19.8"
   },
   "devDependencies": {
     "angular-bootstrap-multiselect": "https://github.com/bentorfs/angular-bootstrap-multiselect.git#^1.1.10"
