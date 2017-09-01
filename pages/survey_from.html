@@ -1,0 +1,96 @@
+
+        
+        <figure class="page-head-image">
+          <img src="http://loremflickr.com/300/300/person" />
+        </figure>
+        
+        <h1>Work with us</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro et necessitatibus exercitationem enim temporibus nobis facere? Quaerat aliquam.</p>
+        <p><strong>Send your personal info to:</strong> <a href="mailto:workwithus@gmail.com">workwithus@gmail.com</a></p>
+      
+          <form id="form-work" class="" role="form" name="form" ng-submit="vm.save()" action="#">
+            
+            <fieldset>
+            
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label class="control-label" for="name" ng-class="{ 'has-error': form.name.$invalid && !form.name.$pristine}">Name</label>
+                  <input name="name" class="form-control" placeholder="Kelly" type="text" reqired/>
+                  <div ng-show="form.name.$invalid && !form.name.$pristine" class="help-block">
+                        Введите email адрес в формате mail@mail.ru. Максимум 50 символов.
+                </div>
+                <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Поле Имя обязательно для заполнения</span>
+
+                  </div>
+                </div>
+      
+              <div class="form-group">
+                  <div class="col-md-6">
+                    <label class="control-label" for="surname">Surname</label>
+                    <input name="surname" class="form-control" placeholder="Slater" type="text" requred/>
+                  </div>
+                </div>
+      
+                <div class="form-group" ng-class="{ 'has-error': form.email.$invalid && !form.email.$pristine}">
+                  <div class="col-md-6">
+                    <label class="control-label" for="email">Email</label>
+                    <input name="email" class="form-control" type="email" ng-model="vm.survey.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="kelly.slater.surf@gmail.com" required />
+                    <div ng-show="form.email.$invalid && !form.email.$pristine" class="help-block">
+                            Введите email адрес в формате mail@mail.ru. Максимум 50 символов.
+                    </div>
+                    <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Поле Имя обязательно для заполнения</span>
+                </div>
+                </div>
+
+                <div class="form-group">
+                   <div class="col-md-6">
+                     <label class="control-label" for="surname">What programming languages do you use in your work, for education?</label>
+                     <ui-select multiple ng-model="vm.survey.languagesList" on-remove="vm.removed($item, $model)" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false" title="Choose a person" required>
+                            <ui-select-match placeholder="Select language...">{{$item.name}}&gt;</ui-select-match>
+                            <ui-select-choices repeat="language.name as language in vm.languages | propsFilter: {name: $select.search}">
+                              <div ng-bind-html="language.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                    </ui-select>                 
+                    </div>
+                </div>                
+                
+                <div class="form-group">
+                    <div class="col-md-6">
+                      <label class="control-label" for="surname">What is your role as a developer?</label>
+                      <ui-select multiple ng-model="vm.survey.developersList" on-remove="vm.removed($item, $model)" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false" title="Choose a person" required>
+                            <ui-select-match placeholder="Select developer title...">{{$item.name}}&gt;</ui-select-match>
+                            <ui-select-choices repeat="developer.name as developer in vm.developers | propsFilter: {name: $select.search}">
+                              <div ng-bind-html="developer.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                    </ui-select>                        
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label class="control-label" for="surname">Years of professional coding?</label>
+                        <select name="profCode" class="form-control" ng-model="vm.survey.profCode" ng-options="item for item in vm.years" required></select>                  
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label class="control-label" for="surname">What is the name of the first organization you worked for? What is your current occupation? If you do not work, why did you decide not to?</label>
+                        <input name="company" ng-model="vm.survey.company" class="form-control" placeholder="Slater" type="text" required/>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label class="control-label" for="surname">Hours a day you spend to your work?</label>
+                        <select name="workHours" class="form-control" ng-model="vm.survey.workHours" ng-options="item for item in vm.years" required></select>                  
+                    </div>
+                </div>
+              
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <button type="button" class="btn btn-primary btn-lg btn-block info" ng-disabled="form.$error.required || (form.$invalid && !form.$pristine)">Send</button>
+                  </div>
+                </div>     
+            </fieldset> 
+          </form>
