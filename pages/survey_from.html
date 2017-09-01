@@ -1,5 +1,3 @@
-
-        
         <figure class="page-head-image">
           <img src="http://loremflickr.com/300/300/person" />
         </figure>
@@ -15,7 +13,7 @@
               <div class="form-group">
                 <div class="col-md-6">
                   <label class="control-label" for="name" ng-class="{ 'has-error': form.name.$invalid && !form.name.$pristine}">Name</label>
-                  <input name="name" class="form-control" placeholder="Kelly" type="text" reqired/>
+                  <input name="name" ng-model="vm.survey.name" class="form-control" placeholder="Kelly" type="text" reqired/>
                   <div ng-show="form.name.$invalid && !form.name.$pristine" class="help-block">
                         Введите email адрес в формате mail@mail.ru. Максимум 50 символов.
                 </div>
@@ -27,7 +25,7 @@
               <div class="form-group">
                   <div class="col-md-6">
                     <label class="control-label" for="surname">Surname</label>
-                    <input name="surname" class="form-control" placeholder="Slater" type="text" requred/>
+                    <input name="surname" ng-model="vm.survey.surname" class="form-control" placeholder="Slater" type="text" requred/>
                   </div>
                 </div>
       
