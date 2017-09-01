@@ -73,14 +73,38 @@
     );
 
       $urlRouterProvider
-      .when('/survey', ['$state', function($state){
+      .when('/', ['$state', function($state){
         $state.go('survey');
       }])
       .when('/admin', ['$state', function($state){
         $state.go('admin');
       }])
-      .otherwise('/survey');
+      .otherwise('/');
       
-  }])
+  }]);
+  app.run(run);
+  run.$inject = ['$rootScope', '$location', '$state', '$cookies', '$http'];
+  function run($rootScope, $location, $state, $cookies, $http)
+  {
+
+    $rootScope.globals = $cookies.getObject('globals') || {};
+    $rootScope.$state = $state;
+    if ($rootScope.globals.currentUser)
+      {
+        $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.globals.currentUser.authdata;
+      }
+
+      $rootScope.$on('$stateChangeStart', function()
+    {
+      var restrictedPage = $.inArray($state, ['/admin']) === 1;
+      var loggedIn = $rootScope.globals.currentUser;
+      if(restrictedPage && !loggedIn)
+        {
+          evt.preventDefault();
+          $state.go('login');
+        }
+      
+    })
+  }
 })
 ();

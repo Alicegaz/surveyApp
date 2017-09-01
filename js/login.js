@@ -4,26 +4,27 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-        LoginController.$inject = ['$window', '$rootscope', '$log', '$timeout', '$stateProvider'];
+        LoginController.$inject = ['$rootScope', '$timeout', '$state', 'AuthenticationService', 'FlashService'];
 
-        function LoginController($window, $rootscope, $log, $timeout, $stateProvider)
+        function LoginController($rootScope, $timeout, $state, AuthenticationService, FlashService)
         {
             var vm = this;
             vm.survey = null;
-            vm.save = save;
-            vm.reset = reset;
             var success = false;
+            vm.login = login;
 
-            function save()
+            function login()
             {
                 vm.dataLoading = true;
-                if (Api)
-                    Api.Send(vm.survey)
-                        .then(function() {
-                            //#TODO handle the response 
-                            //use the dely to display progress bar
-                            $state.go("response", {success: this.success});
-                        })
+                AuthenticationService.Login(vm.username, vm.password, function (response) {
+                    if (response.success) {
+                        AuthenticationService.SetCredentials(vm.username, vm.password);
+                        $state.go('admin');
+                    } else {
+                        FlashService.Error(response.message);
+                        vm.dataLoading = false;
+                    }
+                });
             }
         }
 })();
