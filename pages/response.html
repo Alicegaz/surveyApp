@@ -1,0 +1,9 @@
+<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <strong>Success!</strong> {{flash.message}}
+                <div class="col-md-10">
+                        <a ui-sref="survey" class="btn btn-primary btn-lg btn-block info">Send</a>
+                </div>
+            </button>
+</div>

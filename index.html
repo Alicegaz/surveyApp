@@ -30,6 +30,7 @@
   </ul-->
   <ul class="nav navbar-nav navbar-right" ng-controller="IndexController">
     <li ng-if="!loggedIn"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login </a> </li>
+    <li ng-if="loggedIn"><a ui-sref="login"><span class="glyphicon glyphicon-dashboard"></span> logout </a> </li>
     <li ng-if="loggedIn"><a ui-sref="admin"><span class="glyphicon glyphicon-dashboard"></span> DashBoard </a> </li>
   </ul>
   </div>
@@ -92,6 +93,8 @@
 <script src="app.js"></script>
 <script scr="services/authentication.service.js"></script>
 <script src="services/flash.service.js"></script>
+<script src="services/user.service.js"></script>
+<script src="services/local-storage.service.js"></script>
 <script src="services/authentication.service.js"></script>
 <script src="js/admin.js"></script>
 <script src="js/survey.js"></script>

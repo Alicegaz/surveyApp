@@ -9,5 +9,11 @@
         function ResponseController($window, $rootScope, $scope, $log, $timeout, $stateProvider)
         {
             var success = $state.params.success;
+            if (success)
+                {
+                    FlashService.Succes("The form was succesfully submitted");
+                }
+            else
+                FlashService.Error("Failed to submit the form");
         }
 })();

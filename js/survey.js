@@ -62,6 +62,7 @@
             function save()
             {
                 vm.dataLoading = true;
+                $state.go("response", {success: this.success});
                 /*if (Api)
                     Api.Send(vm.survey)
                         .then(function() {

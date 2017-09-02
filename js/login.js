@@ -12,7 +12,7 @@
             vm.survey = null;
             var success = false;
             vm.login = login;
-
+            
             function login()
             {
                 vm.dataLoading = true;

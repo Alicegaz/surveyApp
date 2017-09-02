@@ -2,7 +2,7 @@
   'use strict';
   //angular.module('ui.select', []);
   var app = angular
-  .module('app', ['ngRoute', /*'ngAnimate', */'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.router', 'ui.select']);
+  .module('app', ['ngRoute', /*'ngAnimate', */'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.router', 'ui.select', 'swxLocalStorage']);
   app.filter('propsFilter', function() {
     return function(items, props) {
       var out = [];
@@ -47,7 +47,21 @@
         url: "/admin",
         controller: "AdminController",
         templateUrl: 'pages/admin.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          accessToken: ['$localStorage','$state', '$rootScope', function($localStorage, $state, $rootScope){
+            $rootScope.globals = $localStorage.get('globals') || {};
+            var loggedIn = $rootScope.globals.currentUser;
+              if(loggedIn)
+                {
+                  $localStorage.accessToken = "success";
+                  return $localStorage.accessToken;
+                }
+              else{
+                $state.go("login");
+              }
+           }]
+       }
       })
       .state('login', {
         url: "/login",
@@ -76,27 +90,28 @@
       .when('/', ['$state', function($state){
         $state.go('survey');
       }])
-      .when('/admin', ['$state', function($state){
-        $state.go('admin');
-      }])
       .otherwise('/');
       
   }]);
   app.run(run);
-  run.$inject = ['$rootScope', '$location', '$state', '$cookies', '$http'];
-  function run($rootScope, $location, $state, $cookies, $http)
+  run.$inject = ['$rootScope', '$location','$state', '$stateParams', '$http', '$localStorage'];
+  function run($rootScope, $location, $state, $stateParams, $http, $localStorage)
   {
 
-    $rootScope.globals = $cookies.getObject('globals') || {};
+    $rootScope.globals = $localStorage.get('globals') || {};
     $rootScope.$state = $state;
+    var restrictedPage = false;
     if ($rootScope.globals.currentUser)
       {
         $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.globals.currentUser.authdata;
       }
 
-      $rootScope.$on('$stateChangeStart', function()
-    {
-      var restrictedPage = $.inArray($state, ['/admin']) === 1;
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams)
+      {
+        if (toState.name == 'admin') {
+          var t = toState.name;
+          restrictedPage = true;
+      }
       var loggedIn = $rootScope.globals.currentUser;
       if(restrictedPage && !loggedIn)
         {
@@ -104,7 +119,7 @@
           $state.go('login');
         }
       
-    })
+    });
   }
 })
 ();
