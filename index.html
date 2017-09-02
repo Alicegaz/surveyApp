@@ -29,9 +29,9 @@
       <li><a href="#">Contact</a></li>
   </ul-->
   <ul class="nav navbar-nav navbar-right" ng-controller="IndexController">
-    <li ng-if="!loggedIn"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login </a> </li>
-    <li ng-if="loggedIn"><a ui-sref="login"><span class="glyphicon glyphicon-dashboard"></span> logout </a> </li>
-    <li ng-if="loggedIn"><a ui-sref="admin"><span class="glyphicon glyphicon-dashboard"></span> DashBoard </a> </li>
+    <li ng-if="!t"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login </a> </li>
+    <li ng-if="t"><a ui-sref="login"><span class="glyphicon glyphicon-dashboard"></span> logout </a> </li>
+    <li ng-if="t"><a ui-sref="admin"><span class="glyphicon glyphicon-dashboard"></span> DashBoard </a> </li>
   </ul>
   </div>
 </div>

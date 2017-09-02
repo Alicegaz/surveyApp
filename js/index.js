@@ -9,6 +9,11 @@
         function IndexController($window, $rootScope, $scope, $localStorage)
         {
             $rootScope.globals = $localStorage.get('globals') || {};
-            $scope.loggedIn = $rootScope.globals.currentUser;
+            $scope.t = true;
+            var loggedIn = $rootScope.globals.currentUser;
+            if (!loggedIn)
+                {
+                    $scope.t = false;
+                }
         }
 })();
