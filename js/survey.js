@@ -4,16 +4,17 @@
         .module('app')
         .controller('SurveyController', SurveyController);
 
-        SurveyController.$inject = ['$scope', '$rootScope'];
+        SurveyController.$inject = ['$scope', '$rootScope', '$state', '$stateParams'];
 
-        function SurveyController($scope, $rootScope)
+        function SurveyController($scope, $rootScope, $state, $stateParams)
         {
             var vm = this;
             vm.d = "dfsdsd sdgfdsg dgdf sg fdgd";
-            vm.survey = null;
+            vm.survey = [];
             vm.save = save;
+            vm.i = 0;
             //vm.reset = reset;
-            var success = false;
+            vm.success = 0;
             vm.disabled = undefined;
             vm.searchEnabled = undefined;
             vm.clear = function() {
@@ -21,50 +22,57 @@
                 vm.address.selected = undefined;
                 vm.country.selected = undefined;
               };
-
-            vm.language = {};
-            vm.languages = [
-                { name: 'JavaScript'},
-                { name: 'Java'},
-                { name: 'Python'},
-                { name: 'Elixir'},
-                { name: 'Rust'},
-                { name: 'Go'},
-                { name: 'TypeScript'},
-                { name: 'PHP'},
-                { name: 'Ruby on Rails'},
-                { name: 'C#'},
-                { name: 'Swift'}
+            var object = [];
+            vm.response = [
+                {
+                    id: 123,
+                    text: 'Name?',
+                    type: 'input'
+                },
+                {
+                    id: 2,
+                    text: 'Languages?',
+                    type: 'multi',
+                    answers: [
+                        { id: 101, text: 'JavaScript' },
+                        { id: 102, text: 'Java' },
+                        { id: 103, text: 'Python' }
+                    ]
+                },
+                {
+                    id: 26,
+                    text: 'Hours?',
+                    type: 'single',
+                    answers: [
+                        { id: 201, text: '0' },
+                        { id: 202, text: '1' },
+                        { id: 203, text: '2' }
+                    ]
+                }
             ];
 
-            vm.developer = {};
-            vm.developers = [
-                { name: 'Web developer'},
-                { name: 'Desktop applications developer'},
-                { name: 'Mobile developer'},
-                { name: 'Database administrator'},
-                { name: 'Developer with a statistics or mathematics background'},
-                { name: 'Systems administrator'},
-                { name: 'DevOps specialist'},
-                { name: 'Embedded applications/devices developer'},
-                { name: 'Data scientist'},
-                { name: 'Other'},
-                { name: 'Graphics programming'},
-                { name: 'Graphic designer'},
-                { name: 'Machine learning specialist'},
-                { name: 'Quality assurance engineer'}
-                
-            ];
-
-            //item = null;
-            vm.years = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-            
+            for (var i = 0; i<vm.response.length; i++)
+                {
+                    vm.response[i].number = i;
+                }
+            //the resulting object is in object array                
             function save()
             {
                 vm.dataLoading = true;
-                $state.go("response", {success: this.success});
+                
+                for (var i = 0, l = vm.survey.length; i < l; i++)
+                    {
+                        var item = {};
+                        item.answers = vm.survey[i.toString()];
+                        item.id = vm.response[i].id;
+                        item.type = vm.response[i].type;
+                        object[i] = item;
+                        console.log(object[i]);
+                    }
+                var t = vm.success;
+                $state.go("response", {success: vm.success});
                 /*if (Api)
-                    Api.Send(vm.survey)
+                    Api.Send(object)
                         .then(function() {
                             //#TODO handle the response 
                             //use the dely to display progress bar

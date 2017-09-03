@@ -8,88 +8,35 @@
         <p><strong>Send your personal info to:</strong> <a href="mailto:workwithus@gmail.com">workwithus@gmail.com</a></p>
       
           <form id="form-work" class="" role="form" name="form" ng-submit="vm.save()" action="#">
-            
-            <fieldset>
-            
-              <div class="form-group">
+              <fieldset>
+                <div class="form-group" ng-repeat="ancet in vm.response">
                 <div class="col-md-6">
-                  <label class="control-label" for="name" ng-class="{ 'has-error': form.name.$invalid && !form.name.$pristine}">Name</label>
-                  <input name="name" ng-model="vm.survey.name" class="form-control" placeholder="Kelly" type="text" reqired/>
-                  <div ng-show="form.name.$invalid && !form.name.$pristine" class="help-block">
-                        Введите email адрес в формате mail@mail.ru. Максимум 50 символов.
-                </div>
-                <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Поле Имя обязательно для заполнения</span>
-
-                  </div>
-                </div>
-      
-              <div class="form-group">
-                  <div class="col-md-6">
-                    <label class="control-label" for="surname">Surname</label>
-                    <input name="surname" ng-model="vm.survey.surname" class="form-control" placeholder="Slater" type="text" requred/>
-                  </div>
-                </div>
-      
-                <div class="form-group" ng-class="{ 'has-error': form.email.$invalid && !form.email.$pristine}">
-                  <div class="col-md-6">
-                    <label class="control-label" for="email">Email</label>
-                    <input name="email" class="form-control" type="email" ng-model="vm.survey.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="kelly.slater.surf@gmail.com" required />
-                    <div ng-show="form.email.$invalid && !form.email.$pristine" class="help-block">
-                            Введите email адрес в формате mail@mail.ru. Максимум 50 символов.
+                    <label class="control-label" for="name" ng-class="{ 'has-error': form.{{'q'+ ancet.number}}.$invalid && !form.{{'q'+ ancet.number}}.$pristine}">{{ancet.text}}</label>                                    
+                    <div ng-if="ancet.type=='input'">
+                        <input name="{{'q'+ ancet.number}}" ng-model="vm.survey[ancet.number.toString()]" class="form-control" placeholder="Kelly" type="text" reqired/>
+                        
                     </div>
-                    <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Поле Имя обязательно для заполнения</span>
-                </div>
-                </div>
-
-                <div class="form-group">
-                   <div class="col-md-6">
-                     <label class="control-label" for="surname">What programming languages do you use in your work, for education?</label>
-                     <ui-select multiple ng-model="vm.survey.languagesList" on-remove="vm.removed($item, $model)" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false" title="Choose a person" required>
-                            <ui-select-match placeholder="Select language...">{{$item.name}}&gt;</ui-select-match>
-                            <ui-select-choices repeat="language.name as language in vm.languages | propsFilter: {name: $select.search}">
-                              <div ng-bind-html="language.name | highlight: $select.search"></div>
+                    <div ng-if="ancet.type=='multi'">
+                        <ui-select multiple ng-model="vm.survey[ancet.number.toString()]" on-remove="vm.removed($item, $model)" name="{{'q'+ ancet.number}}" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false" title="Choose a person" required>
+                            <ui-select-match placeholder="Select language...">{{$item.text}}&gt;</ui-select-match>
+                            <ui-select-choices repeat="answer.text as answer in ancet.answers | propsFilter: {text: $select.search}">
+                              <div ng-bind-html="answer.text | highlight: $select.search"></div>
                             </ui-select-choices>
-                    </ui-select>                 
+                        </ui-select>        
                     </div>
-                </div>                
-                
-                <div class="form-group">
-                    <div class="col-md-6">
-                      <label class="control-label" for="surname">What is your role as a developer?</label>
-                      <ui-select multiple ng-model="vm.survey.developersList" on-remove="vm.removed($item, $model)" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false" title="Choose a person" required>
-                            <ui-select-match placeholder="Select developer title...">{{$item.name}}&gt;</ui-select-match>
-                            <ui-select-choices repeat="developer.name as developer in vm.developers | propsFilter: {name: $select.search}">
-                              <div ng-bind-html="developer.name | highlight: $select.search"></div>
-                            </ui-select-choices>
-                    </ui-select>                        
+                    <div ng-if="ancet.type=='single'">
+                        <select name="{{'q' + ancet.number}}" class="form-control" ng-model="vm.survey[ancet.number.toString()]" ng-options="item.text for item in ancet.answers" required></select>                  
                     </div>
+                    <div ng-show="form.{{'q'+ ancet.number}}.$invalid && !form.{{'q'+ ancet.number}}.$pristine" class="help-block">
+                        {{ancet.message}}
+                    </div>
+                    <span ng-show="form.{{'q'+ ancet.number}}.$dirty && form.{{'q'+ ancet.number}}.$error.required" class="help-block">Поле обязательно для заполнения</span>                    
                 </div>
-
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <label class="control-label" for="surname">Years of professional coding?</label>
-                        <select name="profCode" class="form-control" ng-model="vm.survey.profCode" ng-options="item for item in vm.years" required></select>                  
-                    </div>
                 </div>
-
                 <div class="form-group">
-                    <div class="col-md-6">
-                        <label class="control-label" for="surname">What is the name of the first organization you worked for? What is your current occupation? If you do not work, why did you decide not to?</label>
-                        <input name="company" ng-model="vm.survey.company" class="form-control" placeholder="Slater" type="text" required/>
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary btn-lg btn-block info" ng-disabled="form.$error.required || (form.$invalid && !form.$pristine)">Send</button>
                     </div>
-                </div>
-    
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <label class="control-label" for="surname">Hours a day you spend to your work?</label>
-                        <select name="workHours" class="form-control" ng-model="vm.survey.workHours" ng-options="item for item in vm.years" required></select>                  
-                    </div>
-                </div>
-              
-                <div class="form-group">
-                  <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block info" ng-disabled="form.$error.required || (form.$invalid && !form.$pristine)">Send</button>
-                  </div>
-                </div>     
-            </fieldset> 
+                  </div>    
+                </fieldset>  
           </form>

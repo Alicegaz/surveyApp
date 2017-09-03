@@ -4,14 +4,15 @@
         .module('app')
         .controller('ResponseController', ResponseController);
 
-        ResponseController.$inject = ['$window', '$rootScope', '$scope', '$log', '$timeout', '$stateProvider'];
+        ResponseController.$inject = ['$rootScope', '$scope', '$state', '$timeout', '$stateParams', 'FlashService'];
 
-        function ResponseController($window, $rootScope, $scope, $log, $timeout, $stateProvider)
+        function ResponseController($rootScope, $scope, $state, $timeout, $stateParams, FlashService)
         {
+            var g = $state.params;
             var success = $state.params.success;
-            if (success)
+            if (success == 0)
                 {
-                    FlashService.Succes("The form was succesfully submitted");
+                    FlashService.Success("The form was succesfully submitted");
                 }
             else
                 FlashService.Error("Failed to submit the form");

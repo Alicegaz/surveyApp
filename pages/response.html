@@ -1,4 +1,4 @@
-<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash">
+<!--div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 <strong>Success!</strong> {{flash.message}}
@@ -6,4 +6,12 @@
                         <a ui-sref="survey" class="btn btn-primary btn-lg btn-block info">Send</a>
                 </div>
             </button>
-</div>
+</div-->
+<div class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong ng-if="flash.type == 'success'">Success!</strong>
+        <strong ng-if="flash.type != 'success'">Failed!</strong> {{flash.message}}
+        <div class="col-md-10">
+                <a ui-sref="survey" class="btn btn-primary btn-lg btn-block info">Send</a>
+        </div>
+      </div>
