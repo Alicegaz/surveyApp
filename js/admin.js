@@ -4,9 +4,9 @@
         .module('app')
         .controller('AdminController', AdminController);
 
-        AdminController.$inject = ['$scope', '$rootScope'];
+        AdminController.$inject = ['$scope', '$rootScope', 'api'];
 
-        function AdminController($scope, $rootScope)
+        function AdminController($scope, $rootScope, api)
         {
             //vm = this;
             $scope.profCode = 0;
@@ -72,7 +72,7 @@
                 {"question":{"id":4,"kind":"single","text":"How many hours you work a day?","answers":[{"id":4,"text":"1"},{"id":5,"text":"2"},{"id":6,"text":"0"},{"id":7,"text":"1"}]},"selected_answer":{"id":9,"text":"0"}}
             ]}
             ];**/
-            
+
             var a = $scope.responses.length;
             $scope.numeric = [];
         

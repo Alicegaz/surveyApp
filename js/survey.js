@@ -4,9 +4,9 @@
         .module('app')
         .controller('SurveyController', SurveyController);
 
-        SurveyController.$inject = ['$scope', '$rootScope', '$state', '$stateParams'];
+        SurveyController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'api'];
 
-        function SurveyController($scope, $rootScope, $state, $stateParams)
+        function SurveyController($scope, $rootScope, $state, $stateParams, api)
         {
             var vm = this;
             vm.d = "dfsdsd sdgfdsg dgdf sg fdgd";
