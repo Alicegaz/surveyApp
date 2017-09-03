@@ -4,8 +4,8 @@
         </div>
 
         <div class="well">
-                <h4>Sleep hours</h4>
-          <p>Our survey showed that commonly people sleep {{workHours}}</p> 
+                <h4>Averages for numerical responses</h4>
+          <p ng-repeat="x in q" ng-if="x.type == 'single'">{{x.text}} - {{x.number}}</p> 
         </div>
 
         <div class="row" ng-repeat="q in questinos">
