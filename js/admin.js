@@ -65,7 +65,12 @@
                 }
             ];
 
-            $scope.responses = [{"id":1,"created_at":"2017-09-03T09:50:45.312Z","results":[{"question":{"id":1,"kind":"input","text":"What is your name?"},"input_entered":"Bertrand"},{"question":{"id":3,"kind":"multi","text":"What languages?","answers":[{"id":1,"text":"JavaScript"},{"id":2,"text":"Eiffel"},{"id":3,"text":"Java"}]},"selected_answers":[{"id":1,"text":"JavaScript"},{"id":2,"text":"Eiffel"}]},{"question":{"id":4,"kind":"single","text":"How many hours you work a day?","answers":[{"id":4,"text":"1"},{"id":5,"text":"2"},{"id":6,"text":"3"},{"id":7,"text":"4"},{"id":8,"text":"5"},{"id":9,"text":"6"},{"id":10,"text":"7"},{"id":11,"text":"8"},{"id":12,"text":"9"},{"id":13,"text":"10"}]},"selected_answer":{"id":9,"text":"6"}}]}];
+            $scope.responses = [{"id":1,"created_at":"2017-09-03T09:50:45.312Z","results":[
+                {"question":{"id":1,"kind":"input","text":"What is your name?"},"input_entered":"Bertrand"},
+                {"question":{"id":3,"kind":"multi","text":"What languages?","answers":[{"id":1,"text":"JavaScript"},{"id":2,"text":"Python"},{"id":3,"text":"Java"}]},"selected_answers":[{"id":1,"text":"JavaScript"},{"id":2,"text":"Python"}]},
+                {"question":{"id":4,"kind":"single","text":"How many hours you work a day?","answers":[{"id":4,"text":"1"},{"id":5,"text":"2"},{"id":6,"text":"0"},{"id":7,"text":"1"}]},"selected_answer":{"id":9,"text":"0"}}
+            ]}
+            ];
             var a = $scope.responses.length;
             $scope.numeric = [];
         
