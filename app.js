@@ -37,12 +37,6 @@
   app.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider)
   {
      $stateProvider
-      .state('home', {
-        url: "/home",
-        controller: "HomeController",
-        templateUrl: 'pages/home.html',
-        controllerAs: 'vm'
-      })
       .state('admin', {
         url: "/admin",
         controller: "AdminController",
