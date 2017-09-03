@@ -128,7 +128,6 @@
                                         $scope.questions[j].number++;
         
                                     }
-                                    /**array of numeric answers  [{number: 3, text: ""}{number: 4, text: ""}{number: 5, text: ""}] */
                             }
                         }
 
