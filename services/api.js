@@ -2,8 +2,7 @@
   
   var app = angular.module("app");
   
-  function api($http, pathBase, NameParameterService) {
-    queueApi.prototype = new baseApi($http);
+  function api($http) {
     return {
           /*getAllResponses: function(){
             return $http.get('https://cc-survey-api.herokuapp.com/api/responses');
