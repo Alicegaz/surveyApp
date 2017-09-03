@@ -5,14 +5,14 @@
 
         <div class="well">
                 <h4>Averages for numerical responses</h4>
-          <p ng-repeat="x in q" ng-if="x.type == 'single'">{{x.text}} - {{x.number}}</p> 
+          <p ng-repeat="x in q" ng-if="x.kind == 'single'">{{x.text}} - {{x.number}}</p> 
         </div>
 
         <div class="row" ng-repeat="q in questinos">
           <div class="col-sm-9">
           <h4>{{q.text}}</h4>
           <div class="well">
-                <div ng-if="q.type == 'multi' || q.type == 'single'">
+                <div ng-if="q.kind == 'multi' || q.kind == 'single'">
                                 <div ng-repeat="x in answers">
                                                 <h5>{{x.text}}</h5>
                                                 <div class = "progress progress-striped" >     

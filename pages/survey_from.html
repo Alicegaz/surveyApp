@@ -12,11 +12,11 @@
                 <div class="form-group" ng-repeat="ancet in vm.response">
                 <div class="col-md-6">
                     <label class="control-label" for="name" ng-class="{ 'has-error': form.{{'q'+ ancet.number}}.$invalid && !form.{{'q'+ ancet.number}}.$pristine}">{{ancet.text}}</label>                                    
-                    <div ng-if="ancet.type=='input'">
+                    <div ng-if="ancet.kind=='input'">
                         <input name="{{'q'+ ancet.number}}" ng-model="vm.survey[ancet.number.toString()]" class="form-control" placeholder="Kelly" type="text" reqired/>
                         
                     </div>
-                    <div ng-if="ancet.type=='multi'">
+                    <div ng-if="ancet.kind=='multi'">
                         <ui-select multiple ng-model="vm.survey[ancet.number.toString()]" on-remove="vm.removed($item, $model)" name="{{'q'+ ancet.number}}" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false" title="Choose a person" required>
                             <ui-select-match placeholder="Select language...">{{$item.text}}&gt;</ui-select-match>
                             <ui-select-choices repeat="answer.text as answer in ancet.answers | propsFilter: {text: $select.search}">
@@ -24,7 +24,7 @@
                             </ui-select-choices>
                         </ui-select>        
                     </div>
-                    <div ng-if="ancet.type=='single'">
+                    <div ng-if="ancet.kind=='single'">
                         <select name="{{'q' + ancet.number}}" class="form-control" ng-model="vm.survey[ancet.number.toString()]" ng-options="item.text for item in ancet.answers" required></select>                  
                     </div>
                     <div ng-show="form.{{'q'+ ancet.number}}.$invalid && !form.{{'q'+ ancet.number}}.$pristine" class="help-block">

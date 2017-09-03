@@ -86,7 +86,7 @@
 
             for (var i = 0; i<$scope.questions.length; i++)
                 {
-                    if ($scope.questions[i].type == 'multi' || $scope.questions[i].type == 'single')
+                    if ($scope.questions[i].kind == 'multi' || $scope.questions[i].kind == 'single')
                         {
                             for (var j = 0; j<$scope.questions[i].answers.length; j++)
                                 {
@@ -96,7 +96,7 @@
                                 }
                             
                         }
-                        if ($scope.questions[i].type == 'single')
+                        if ($scope.questions[i].kind == 'single')
                             {
                                 $scope.questions[i].order = i;
                                 $scope.questions[i].number = 0;
@@ -134,7 +134,7 @@
                     var size = $scope.responses.length;
                     for (var i = 0; i < $scope.questions.length; i++)
                         {
-                            if ($scope.questions[i].type == "multi" || $scope.questions[i].type == "single")
+                            if ($scope.questions[i].kind == "multi" || $scope.questions[i].kind == "single")
                                 {
                                     for (var j = 0; j<$scope.questions[i].answers.length; j++)
                                         {
@@ -142,7 +142,7 @@
                                             $scope.questions[i].answers[j].string = n.toString()+"%";
                                         }
                                 }
-                                if ($scope.questions[i].type == "single")
+                                if ($scope.questions[i].kind == "single")
                                     {
                                         $scope.questions[i].number = $scope.questions[i].number / size;
                                     }

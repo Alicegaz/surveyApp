@@ -71,7 +71,7 @@
                         var item = {};
                         item.answers = vm.survey[i.toString()];
                         item.id = vm.response[i].id;
-                        item.type = vm.response[i].type;
+                        item.kind = vm.response[i].kind;
                         object[i] = item;
                         console.log(object[i]);
                     }
