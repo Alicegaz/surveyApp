@@ -24,18 +24,19 @@
 
             //#TODO uncomment*/
             /*************** */
-            /*api.getQuestions()
+            api.getAllQuestions()
             .then(function(result){
-                $scope.questions= result;
+                $scope.questions= result.data;
             });
             
-            api.getResponses()
+            api.getAllResponses()
             .then(function(result)
             {
-                $scope.responses = result;
-            })          
-            */
-            $scope.questions = [
+                $scope.responses = result.data;
+            });      
+
+            
+            /**$scope.questions = [
                 {
                     id: 123,
                     text: 'Name?',
@@ -70,7 +71,8 @@
                 {"question":{"id":3,"kind":"multi","text":"What languages?","answers":[{"id":1,"text":"JavaScript"},{"id":2,"text":"Python"},{"id":3,"text":"Java"}]},"selected_answers":[{"id":1,"text":"JavaScript"},{"id":2,"text":"Python"}]},
                 {"question":{"id":4,"kind":"single","text":"How many hours you work a day?","answers":[{"id":4,"text":"1"},{"id":5,"text":"2"},{"id":6,"text":"0"},{"id":7,"text":"1"}]},"selected_answer":{"id":9,"text":"0"}}
             ]}
-            ];
+            ];**/
+            
             var a = $scope.responses.length;
             $scope.numeric = [];
         

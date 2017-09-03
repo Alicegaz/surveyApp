@@ -23,7 +23,13 @@
                 vm.country.selected = undefined;
               };
             var object = [];
-            vm.response = [
+            if (api)
+                    api.getAllQuestions()
+                        .then(function(response) {
+                            vm.response = response.data;
+                        });
+
+            /**vm.response = [
                 {
                     id: 123,
                     text: 'Name?',
@@ -49,7 +55,7 @@
                         { id: 203, text: '2' }
                     ]
                 }
-            ];
+            ];**/
 
             for (var i = 0; i<vm.response.length; i++)
                 {
@@ -71,13 +77,14 @@
                     }
                 var t = vm.success;
                 $state.go("response", {success: vm.success});
-                /*if (Api)
-                    Api.Send(object)
+                if (api)
+                    api.save(object)
                         .then(function() {
                             //#TODO handle the response 
                             //use the dely to display progress bar
+                            var t = vm.success;
                             $state.go("response", {success: this.success});
-                        })*/
+                        });
         }
         }
 })();

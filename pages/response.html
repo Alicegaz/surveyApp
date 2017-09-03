@@ -7,11 +7,11 @@
                 </div>
             </button>
 </div-->
-<div class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }">
+
+<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong ng-if="flash.type == 'success'">Success!</strong>
-        <strong ng-if="flash.type != 'success'">Failed!</strong> {{flash.message}}
+        {{flash.message}}
         <div class="col-md-10">
                 <a ui-sref="survey" class="btn btn-primary btn-lg btn-block info">Send</a>
         </div>
-      </div>
+</div>
