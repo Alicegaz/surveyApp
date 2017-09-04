@@ -46,12 +46,16 @@
                         item.answers = vm.survey[i.toString()];
                         if (vm.response[i].kind == 'multi')
                             {
-                                item.answers = [];
                                 for (var j = 0; j<item.answers.length; j++)
                                     {
-                                        item.answers[j].text = vm.survey[i.toString()][j];
-                                        objectId = vm.response[i].answers.findIndex((obj => obj.text == vm.survey[i.toString()][j]).text);
-                                        item.answers[j].id = vm.response[i].answers[objectId].id;
+										var text = vm.survey[i.toString()][j];
+										console.log('### ' + text);
+                                        var answerIndex = vm.response[i].answers.findIndex((obj => obj.text == text));
+                                        var id = vm.response[i].answers[answerIndex].id;
+										item.answers[j] = {
+											'text': text,
+											'id': id
+										};
                                     }
                             }
                             
@@ -85,7 +89,7 @@
                             //#TODO handle the response 
                             //use the dely to display progress bar
                             var t = vm.success;
-                            $state.go("response", {success: vm.success});
+                            //$state.go("response", {success: vm.success});
                         });
         }
         }
