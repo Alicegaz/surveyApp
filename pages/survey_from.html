@@ -4,10 +4,10 @@
         </figure>
         
         <h1>Work with us</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro et necessitatibus exercitationem enim temporibus nobis facere? Quaerat aliquam.</p>
-        <p><strong>Send your personal info to:</strong> <a href="mailto:workwithus@gmail.com">workwithus@gmail.com</a></p>
+        <p>This survey uncovers the scientific summary of your work personality and lets us to know more about you work experience.</p>
+        <p><strong>Send your personal info to:</strong> <a href="">work@gmail.com</a></p>
       
-          <form id="form-work" class="" role="form" name="form" ng-submit="vm.save()" action="#">
+          <form id="form-work" class="" role="form" name="form" ng-submit="vm.save()">
               <fieldset>
                 <div class="form-group" ng-repeat="ancet in vm.response">
                 <div class="col-md-6">
@@ -30,7 +30,7 @@
                     <div ng-show="form.{{'q'+ ancet.number}}.$invalid && !form.{{'q'+ ancet.number}}.$pristine" class="help-block">
                         {{ancet.message}}
                     </div>
-                    <span ng-show="form.{{'q'+ ancet.number}}.$dirty && form.{{'q'+ ancet.number}}.$error.required" class="help-block">Поле обязательно для заполнения</span>                    
+                    <span ng-show="form.{{'q'+ ancet.number}}.$dirty && form.{{'q'+ ancet.number}}.$error.required" class="help-block">Field is required</span>                    
                 </div>
                 </div>
                 <div class="form-group">

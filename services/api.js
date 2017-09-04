@@ -11,9 +11,15 @@
               return $http.get('https://cc-survey-api.herokuapp.com/api/questions');
               
           },
-          save: function(ancet){
+          /*save: function(ancet){
             return $http.post('https://cc-survey-api.herokuapp.com/api/save', ancet);
-          },
+          },*/
+          save: function(obj)
+          {
+            return $http.get('https://cc-survey-api.herokuapp.com/api/save', {
+            params: obj
+        });
+      }
         
     };
 }
