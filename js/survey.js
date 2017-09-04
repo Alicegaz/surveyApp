@@ -50,14 +50,14 @@
                         console.log(object[i]);
                     }
                 var t = vm.success;
-                $state.go("response", {success: vm.success});
+                //$state.go("response", {success: vm.success});
                 if (api)
                     api.save(object)
                         .then(function() {
                             //#TODO handle the response 
                             //use the dely to display progress bar
                             var t = vm.success;
-                            $state.go("response", {success: this.success});
+                            $state.go("response", {success: vm.success});
                         });
         }
         }
