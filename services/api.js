@@ -17,7 +17,7 @@
           save: function(obj)
           {
             return $http.get('https://cc-survey-api.herokuapp.com/api/save', {
-            params: obj
+            params: JSON.stringify(obj)
         });
       }
         
