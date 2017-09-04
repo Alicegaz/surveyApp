@@ -21,7 +21,7 @@
                 vm.address.selected = undefined;
                 vm.country.selected = undefined;
               };
-            var object = [];
+            vm.object = [];
             if (api)
                     api.getAllQuestions()
                         .then(function(response) {
@@ -43,34 +43,48 @@
                 for (var i = 0, l = vm.survey.length; i < l; i++)
                     {
                         var item = {};
-                        
+                        item.answers = vm.survey[i.toString()];
                         if (vm.response[i].kind == 'multi')
                             {
                                 item.answers = [];
                                 for (var j = 0; j<item.answers.length; j++)
                                     {
                                         item.answers[j].text = vm.survey[i.toString()][j];
-                                        item.answers[j].id = vm.response[i].answers[j].id;
+                                        objectId = vm.response[i].answers.findIndex((obj => obj.text == vm.survey[i.toString()][j]).text);
+                                        item.answers[j].id = vm.response[i].answers[objectId].id;
                                     }
                             }
-                            else{
-                                item.answers = vm.survey[i.toString()];
-                            }
+                            
 						item.id = vm.response[i].id;
                         item.kind = vm.response[i].kind;
-                        object[i] = item;
-                        console.log(object[i]);
+                        vm.object[i] = item;
+                        console.log(vm.object[i]);
                     }
                 var t = vm.success;
                 //$state.go("response", {success: vm.success});
                 if (api)
-                    api.save(object)
+                    {
+                        $http({
+                            url: encodeURI('https://cc-survey-api.herokuapp.com/api/save'),
+                            method: "POST",
+                            data: angular.toJson(vm.object)
+                        })
+                        .then(function(response) {
+                            var t = vm.success;
+                            $state.go("response", {success: vm.success});
+                        }, 
+                        function(response) { // optional
+                                // failed
+                                $state.go("response", {success: 1});
+                        });
+                    }
+                    /*api.save(vm.object)
                         .then(function() {
                             //#TODO handle the response 
                             //use the dely to display progress bar
                             var t = vm.success;
                             $state.go("response", {success: vm.success});
-                        });
+                        });*/
         }
         }
 })();
