@@ -4,12 +4,6 @@
   
   function api($http, $sce) {
     return {
-          /*getAllResponses: function(){
-            return $http.get('https://cc-survey-api.herokuapp.com/api/responses');
-          },
-          getAllQuestions: function(){
-              return $http.get('https://cc-survey-api.herokuapp.com/api/questions')
-          },*/
           getAllResponses: function(){
             return $http.get('https://cc-survey-api.herokuapp.com/api/responses');
           },
@@ -20,10 +14,6 @@
           save: function(ancet){
             return $http.post('https://cc-survey-api.herokuapp.com/api/questions', ancet);
           },
-          /*deleteOne: function(id)
-          {
-              return $http.delete('broker/act/'+id);
-          }*/
         
     };
 }
