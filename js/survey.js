@@ -35,41 +35,6 @@
                             
                         }).catch(function(err){});
                                      
-                        /*if(response.found)
-                            {
-                        for (var i = 0; i<vm.response.length; i++)
-                            {
-                                vm.response[i].number = i;
-                            }
-                        }*/
-
-            /**vm.response = [
-                {
-                    id: 123,
-                    text: 'Name?',
-                    type: 'input'
-                },
-                {
-                    id: 2,
-                    text: 'Languages?',
-                    type: 'multi',
-                    answers: [
-                        { id: 101, text: 'JavaScript' },
-                        { id: 102, text: 'Java' },
-                        { id: 103, text: 'Python' }
-                    ]
-                },
-                {
-                    id: 26,
-                    text: 'Hours?',
-                    type: 'single',
-                    answers: [
-                        { id: 201, text: '0' },
-                        { id: 202, text: '1' },
-                        { id: 203, text: '2' }
-                    ]
-                }
-            ];**/
 
             //the resulting object is in object array                
             function save()

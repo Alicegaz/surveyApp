@@ -15,15 +15,6 @@
 
             $scope.number = "50%";
 
-            /**the answer is [
-             * { q1: "", q2: "", ....
-             * },
-             * { q1: "", q2: "", ....};
-             * 
-             * ] */
-
-            //#TODO uncomment*/
-            /*************** */
             api.getAllQuestions()
             .then(function(result){
                 $scope.questions= result.data;
