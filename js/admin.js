@@ -30,8 +30,6 @@
             });      
             var f = $scope.questions;
             var g = 0;
-            
-
             function responceProce()
             {
                 var a = $scope.responses.length;

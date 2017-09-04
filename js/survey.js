@@ -13,7 +13,6 @@
             vm.survey = [];
             vm.save = save;
             vm.i = 0;
-            //vm.reset = reset;
             vm.success = 0;
             vm.disabled = undefined;
             vm.searchEnabled = undefined;
