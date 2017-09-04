@@ -43,7 +43,19 @@
                 for (var i = 0, l = vm.survey.length; i < l; i++)
                     {
                         var item = {};
-                        item.answers = vm.survey[i.toString()];
+                        
+                        if (vm.response[i].kind == 'multi')
+                            {
+                                item.answers = [];
+                                for (var j = 0; j<item.answers.length; j++)
+                                    {
+                                        item.answers[j].text = vm.survey[i.toString()][j];
+                                        item.answers[j].id = vm.response[i].answers[j].id;
+                                    }
+                            }
+                            else{
+                                item.answers = vm.survey[i.toString()];
+                            }
 						item.id = vm.response[i].id;
                         item.kind = vm.response[i].kind;
                         object[i] = item;
