@@ -86,7 +86,12 @@
                             //use the dely to display progress bar
                             var t = vm.success;
                             $state.go("response", {success: vm.success});
-                        });
+                        },
+                        function(response) { // optional
+                            // failed
+                            $state.go("response", {success: 1});
+                    }
+                    );
         }
         }
 })();
