@@ -42,7 +42,7 @@
                                               <p ng-if="x.question.kind == 'multi'" ng-repeat="l in x.selected_answers">
                                               {{l.text}}
                                               </p>
-                                              <p ng-if="x.question.kind == 'single'">{{x.selected_answer}}</p>
+                                              <p ng-if="x.question.kind == 'single'">{{x.selected_answer.text}}</p>
                                               <p ng-if="x.question.kind == 'input'">{{x.input_entered}}</p>
                                       </td>
                                       
