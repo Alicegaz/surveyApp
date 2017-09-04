@@ -2,7 +2,7 @@
   'use strict';
   //angular.module('ui.select', []);
   var app = angular
-  .module('app', ['ngRoute', /*'ngAnimate', */'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.router', 'ui.select', 'swxLocalStorage']);
+  .module('app', ['ngRoute', /*'ngAnimate', */'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.router', 'ui.select', 'swxLocalStorage', 'ng-fusioncharts']);
   app.filter('propsFilter', function() {
     return function(items, props) {
       var out = [];

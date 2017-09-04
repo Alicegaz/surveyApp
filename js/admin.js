@@ -9,25 +9,39 @@
         function AdminController($scope, $rootScope, api)
         {
             //vm = this;
+            $scope.myDataSource = [];
+
+                $scope.chart = {
+                    caption: "Harry's SuperMart",
+                    subCaption: "Top 5 stores in last month by revenue",
+                    numberPrefix: "%",
+                    theme: "ocean"
+                };
+            
+
             $scope.profCode = 0;
             $scope.surveysList = [];
             $scope.workHours = 0;
 
             $scope.number = "50%";
 
+            $scope.options = {};
+            $scope.datas = [];
+
             api.getAllQuestions()
             .then(function(result){
                 $scope.questions= result.data;
                 questionProc();
+                api.getAllResponses()
+                .then(function(result)
+                {
+                    $scope.responses = result.data;
+                    responceProce();
+                    q1();
+                });  
             });
             
-            api.getAllResponses()
-            .then(function(result)
-            {
-                $scope.responses = result.data;
-                responceProce();
-                q1();
-            });      
+                
             var f = $scope.questions;
             var g = 0;
             function responceProce()
@@ -108,6 +122,31 @@
                                     }
                                
                         }
+
+                        var k = 0;
+                        for (var i = 0; i < $scope.questions.length; i++)
+                            {
+                                if ($scope.questions[i].graph_type == 'bar')
+                                    { 
+                                        var m = [];
+                                        for (var j = 0; j < $scope.questions[i].answers.length; j++)
+                                            {
+                                                m[j] = {
+                                                    label: $scope.questions[i].answers[j].text,
+                                                    value: $scope.questions[i].answers[j].number
+                                                }
+                                            }
+                                            $scope.datas[k] = m;
+                                            k++;
+                                        
+                                    }
+                                    $scope.myDataSource[k] = {
+                                        chart: $scope.chart,
+                                        data: $scope.datas[k]
+                                    }
+                            }
+                            
+                        
                    
             }
         }
