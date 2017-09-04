@@ -62,12 +62,14 @@
                     }
                 var t = vm.success;
                 //$state.go("response", {success: vm.success});
-                if (api)
-                    {
-                        $http({
+
+                           $http({
                             url: encodeURI('https://cc-survey-api.herokuapp.com/api/save'),
                             method: "POST",
-                            data: angular.toJson(vm.object)
+                            data: vm.object,
+                            headers: {
+                                'Content-Type' : "text/plain"
+                            }
                         })
                         .then(function(response) {
                             var t = vm.success;
@@ -77,7 +79,6 @@
                                 // failed
                                 $state.go("response", {success: 1});
                         });
-                    }
                     /*api.save(vm.object)
                         .then(function() {
                             //#TODO handle the response 
