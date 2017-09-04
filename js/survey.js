@@ -44,20 +44,21 @@
                     {
                         var item = {};
                         item.answers = vm.survey[i.toString()];
-                        item.id = vm.response[i].id;
+						item.id = vm.response[i].id;
                         item.kind = vm.response[i].kind;
                         object[i] = item;
                         console.log(object[i]);
                     }
                 var t = vm.success;
-                $state.go("response", {success: vm.success});
+                //$state.go("response", {success: vm.success});
+				console.log('Before API');
                 if (api)
                     api.save(object)
                         .then(function() {
                             //#TODO handle the response 
                             //use the dely to display progress bar
                             var t = vm.success;
-                            $state.go("response", {success: this.success});
+                            $state.go("response", {success: t});
                         });
         }
         }
