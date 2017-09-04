@@ -12,7 +12,7 @@
               
           },
           save: function(ancet){
-            return $http.post('https://cc-survey-api.herokuapp.com/api/questions', ancet);
+            return $http.post('https://cc-survey-api.herokuapp.com/api/save', ancet);
           },
         
     };

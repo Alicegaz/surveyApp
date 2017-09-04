@@ -31,42 +31,6 @@
             var f = $scope.questions;
             var g = 0;
             
-            /**$scope.questions = [
-                {
-                    id: 123,
-                    text: 'Name?',
-                    type: 'input',
-                    number: 0,
-                    string: ""
-                },
-                {
-                    id: 2,
-                    text: 'Languages?',
-                    type: 'multi',
-                    answers: [
-                        { id: 101, text: 'JavaScript' },
-                        { id: 102, text: 'Java' },
-                        { id: 103, text: 'Python' }
-                    ]
-                },
-                {
-                    id: 26,
-                    text: 'Hours?',
-                    type: 'single',
-                    answers: [
-                        { id: 201, text: '0' },
-                        { id: 202, text: '1' },
-                        { id: 203, text: '2' }
-                    ]
-                }
-            ];
-
-            $scope.responses = [{"id":1,"created_at":"2017-09-03T09:50:45.312Z","results":[
-                {"question":{"id":1,"kind":"input","text":"What is your name?"},"input_entered":"Bertrand"},
-                {"question":{"id":3,"kind":"multi","text":"What languages?","answers":[{"id":1,"text":"JavaScript"},{"id":2,"text":"Python"},{"id":3,"text":"Java"}]},"selected_answers":[{"id":1,"text":"JavaScript"},{"id":2,"text":"Python"}]},
-                {"question":{"id":4,"kind":"single","text":"How many hours you work a day?","answers":[{"id":4,"text":"1"},{"id":5,"text":"2"},{"id":6,"text":"0"},{"id":7,"text":"1"}]},"selected_answer":{"id":9,"text":"0"}}
-            ]}
-            ];**/
 
             function responceProce()
             {
