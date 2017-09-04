@@ -27,14 +27,18 @@
             api.getAllQuestions()
             .then(function(result){
                 $scope.questions= result.data;
+                questionProc();
             });
             
             api.getAllResponses()
             .then(function(result)
             {
                 $scope.responses = result.data;
+                responceProce();
+                q1();
             });      
-
+            var f = $scope.questions;
+            var g = 0;
             
             /**$scope.questions = [
                 {
@@ -73,16 +77,21 @@
             ]}
             ];**/
 
-            var a = $scope.responses.length;
-            $scope.numeric = [];
+            function responceProce()
+            {
+                var a = $scope.responses.length;
         
-            for (var i = 0; i<$scope.responses.length; i++)
-                {
-                    for (var j = 0; j<$scope.responses[i].results.length; j++)
-                        {
-                            $scope.responses[i].results[j].order = j;
-                        }
-                }
+                for (var i = 0; i<$scope.responses.length; i++)
+                    {
+                        for (var j = 0; j<$scope.responses[i].results.length; j++)
+                            {
+                                $scope.responses[i].results[j].order = j;
+                            }
+                    }
+            }
+
+            function questionProc()
+            {
 
             for (var i = 0; i<$scope.questions.length; i++)
                 {
@@ -96,14 +105,11 @@
                                 }
                             
                         }
-                        if ($scope.questions[i].kind == 'single')
-                            {
                                 $scope.questions[i].order = i;
                                 $scope.questions[i].number = 0;
-                            }
                 }
+            }
 
-            q1();
             function q1()
             {
                 /**for every person */
@@ -121,13 +127,14 @@
                                                 $scope.questions[j].answers[objIndex].number++;
                                             }
                                     }
-                                if ($scope.responses[i].results[j].question.kind == 'single')
-                                    {
-                                        var objIndex = $scope.questions[j].answers.findIndex((obj => obj.text == $scope.responses[i].results[j].input_entered));
-                                        $scope.questions[j].answers[objIndex].number++;
-                                        $scope.questions[j].number++;
-        
-                                    }
+                                    if ($scope.responses[i].results[j].question.kind == 'single')
+                                        {
+                                            var objIndex = $scope.questions[j].answers.findIndex((obj => obj.text == $scope.responses[i].results[j].selected_answer.text));
+                                            $scope.questions[j].answers[objIndex].number++;
+                                            $scope.questions[j].number++;
+            
+                                        }
+                                
                             }
                         }
 

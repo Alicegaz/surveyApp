@@ -4,9 +4,9 @@
         .module('app')
         .controller('SurveyController', SurveyController);
 
-        SurveyController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'api'];
+        SurveyController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'api', '$http'];
 
-        function SurveyController($scope, $rootScope, $state, $stateParams, api)
+        function SurveyController($scope, $rootScope, $state, $stateParams, api, $http)
         {
             var vm = this;
             vm.d = "dfsdsd sdgfdsg dgdf sg fdgd";
@@ -27,7 +27,21 @@
                     api.getAllQuestions()
                         .then(function(response) {
                             vm.response = response.data;
-                        });
+                            
+                            for (var i = 0; i<vm.response.length; i++)
+                                {
+                                    vm.response[i].number = i;
+                                }
+                            
+                        }).catch(function(err){});
+                                     
+                        /*if(response.found)
+                            {
+                        for (var i = 0; i<vm.response.length; i++)
+                            {
+                                vm.response[i].number = i;
+                            }
+                        }*/
 
             /**vm.response = [
                 {
@@ -57,10 +71,6 @@
                 }
             ];**/
 
-            for (var i = 0; i<vm.response.length; i++)
-                {
-                    vm.response[i].number = i;
-                }
             //the resulting object is in object array                
             function save()
             {
