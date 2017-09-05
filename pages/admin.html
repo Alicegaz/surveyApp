@@ -70,17 +70,6 @@
   </div>
 </div>
 
-
-<div class="well">
-  <h4>Dashboard</h4>
-  <p>Some text..</p>
-</div>
-
-<div class="well">
-  <h4>Averages for numerical responses</h4>
-  <p ng-repeat="x in questions" ng-if="x.average">{{x.text}} - {{x.average}}</p> 
-</div>
-
 <div class="row" ng-repeat="q in bars" ng-if="$even">
     <div class="col-sm-6">
       <h4>{{bars[$index].text}}</h4>
