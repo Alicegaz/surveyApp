@@ -13,7 +13,7 @@
                 <div class="col-md-6">
                     <label class="control-label" for="name" ng-class="{ 'has-error': form.{{'q'+ ancet.number}}.$invalid && !form.{{'q'+ ancet.number}}.$pristine}">{{ancet.text}}</label>                                    
                     <div ng-if="ancet.kind=='input'">
-                        <input name="{{'q'+ ancet.number}}" ng-model="vm.survey[ancet.number.toString()]" class="form-control" placeholder="Kelly" type="text" reqired/>
+                        <input name="{{'q'+ ancet.number}}" ng-model="vm.survey[ancet.number.toString()]" class="form-control" placeholder="Kelly" type="text" required/>
                         
                     </div>
                     <div ng-if="ancet.kind=='multi'">
